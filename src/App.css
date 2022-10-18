@@ -1,12 +1,261 @@
-.App {
+.bg {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./ass/uno-wp/wp2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* opacity: 0.8; */
+  z-index: 1;
+  position: relative;
+}
+
+.login-box {
+  width: 25vw;
+  height: 60vh;
+  background-color: rgba(255, 255, 255, 0.75);
+  position: absolute;
+  border-radius: 10px;
+  right: 15%;
+  top: 20%;
+}
+
+.login-box::before {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  inset: 0;
+  transform: rotate(-5deg);
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.z-Index20 {
+  z-index: 20;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.gap20px {
+  gap: 20px;
+}
+.with-50 {
+  width: 60%;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.bottom {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 5px;
+}
+
+.title {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bg-play-r {
+  background-image: radial-gradient(
+    circle,
+    #ae2a35,
+    #ba4675,
+    #b06cab,
+    #9b8fce,
+    #8eaedd,
+    #8ab6e8,
+    #84bef2,
+    #7dc6fc,
+    #7ab9ff,
+    #98a6ff,
+    #c98aff,
+    #fb5ff5
+  );
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
-
+.bg-play-b {
+  background-image: radial-gradient(
+    circle,
+    #1227af,
+    #0050c5,
+    #0071d2,
+    #008fd8,
+    #58acdb,
+    #64b5e6,
+    #71bdf1,
+    #7dc6fc,
+    #7ab9ff,
+    #98a6ff,
+    #c98aff,
+    #fb5ff5
+  );
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.bg-play-y {
+  background-image: radial-gradient(
+    circle,
+    #f2e705,
+    #aef05e,
+    #74f19a,
+    #52ebc9,
+    #69e1e3,
+    #60daf0,
+    #68d1f9,
+    #7dc6fc,
+    #7ab9ff,
+    #98a6ff,
+    #c98aff,
+    #fb5ff5
+  );
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.bg-play-g {
+  background-image: radial-gradient(
+    circle,
+    #07ff27,
+    #00fd86,
+    #00f7c0,
+    #00eee4,
+    #39e1f1,
+    #48d9fa,
+    #62d0fe,
+    #7dc6fc,
+    #7ab9ff,
+    #98a6ff,
+    #c98aff,
+    #fb5ff5
+  );
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.header-play {
+  width: 100vw;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.15);
+  /* opacity: 0.5; */
+  display: grid;
+  grid-template-columns: 33vw 33vw 33vw;
+  gap: 20px;
+}
+.controller {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+}
+.play-ground {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
+.card-throwed {
+  grid-row: 3 / 5;
+  grid-column: 3 / 4;
+  margin: 35px auto;
+  transform: rotate(15deg);
+}
+.img-card-throwed {
+  width: 100px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+.main-player-card {
+  grid-column: 1/6;
+  grid-row: 5/6;
+}
+.main-player-card-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.img-card-throwed-main {
+  width: 90px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px; /* transform: translateX(-20px); */
+}
+.img-card-throwed-main:hover {
+  z-index: 100;
+  transform: scale(1.2);
+}
+.main-player-info {
+  grid-column: 3/4;
+  grid-row: 6/7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-aria {
+  grid-row: 6/7;
+  grid-column: 4/5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+.enemy-card {
+  grid-row: 2/3;
+  grid-column: 2/5;
+}
+.clock {
+  grid-row: 3/4;
+  grid-column: 2/3;
+  background-image: radial-gradient(
+    circle,
+    #07ff27,
+    #00fd86,
+    #00f7c0,
+    #00eee4,
+    #39e1f1,
+    #48d9fa,
+    #62d0fe,
+    #7dc6fc,
+    #7ab9ff,
+    #98a6ff,
+    #c98aff,
+    #fb5ff5
+  );
+  width: 70px;
+  height: 70px;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-float infinite 3s ease-in-out;
@@ -25,15 +274,222 @@
 .App-link {
   color: rgb(112, 76, 182);
 }
+.draw-card {
+  width: 50px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+.draw-card-2 {
+  position: absolute;
+  top: 2px;
+  left: -2px;
+}
+.draw-card-3 {
+  position: absolute;
+  top: 4px;
+  left: -4px;
+}
+.draw-card-4 {
+  position: absolute;
+  top: 6px;
+  left: -6px;
+}
+.draw-card-5 {
+  position: absolute;
+  top: 12px;
+  left: -12px;
+}
+/* .draw-card-6 {
+  top: -10px;
+  left: -10px;
+}
+.draw-card-7 {
+  top: -15px;
+  left: -15px;
+} */
+.draw-card-aria {
+  grid-row: 3/4;
+  grid-column: 4/5;
+  cursor: pointer;
 
-@keyframes App-logo-float {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draw-box {
+  position: relative;
+}
+.draw-box:hover {
+  transform: scale(1.05);
+}
+.enemy-info {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-bar {
+  width: 98%;
+  /* margin-top: 50px; */
+  margin: 20px auto 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.with-33 {
+  width: 32%;
+}
+.color-wheel {
+  width: 210px;
+  height: 210px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 50px auto;
+}
+.square {
+  width: 100px;
+  height: 100px;
+}
+.wheel-R {
+  background-color: rgb(235, 67, 67);
+  border-top-left-radius: 100%;
+}
+.wheel-G {
+  background-color: rgb(4, 189, 4);
+  border-top-right-radius: 100%;
+}
+.wheel-Y {
+  background-color: rgb(236, 236, 24);
+  border-bottom-left-radius: 100%;
+}
+.wheel-B {
+  background-color: rgb(41, 41, 177);
+  border-bottom-right-radius: 100%;
+}
+.wheel-B:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.wheel-R:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.wheel-Y:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.wheel-G:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.winner-logo {
+  width: 300px;
+  height: 300px;
+  overflow: visible;
+  animation: zoom-in 1s linear infinite;
+}
+.winner-div {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.width-40 {
+  width: 45%;
+}
+.winner-title {
+  color: white;
+  transform: rotate(-20deg);
+  margin: 0;
+  animation: zoom-in 1s linear infinite;
+}
+.after-win {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.chat-box-container {
+  width: 300px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(36, 37, 38);
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  border-radius: 20px;
+}
+.chat-box-top {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.chat-box-bot  div {
+  margin-right: 20px;
+}
+.chat-box-main {
+  width: 100%;
+  height: 390px;
+  overflow-y: scroll;
+}
+.chat-box-bot {
+  width: 90%;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}
+.chat-item {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  max-width: 220px;
+  width: auto;
+  background-color: rgb(62, 64, 66);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+}
+.input-chat {
+  background-color: rgb(62, 64, 66);
+  border: 0;
+  outline: none;
+  width: 200px;
+  height: 25px;
+  color: white;
+  border-radius: 15px;
+  padding-left: 20px;
+}
+.hover-icon:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.bot-right{
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+@keyframes zoom-in {
   0% {
-    transform: translateY(0);
+    /* transform: scale(1.2); */
+  }
+  25% {
+    transform: rotate(10deg);
   }
   50% {
-    transform: translateY(10px);
+    transform: scale(1.2);
+  }
+  75% {
+    transform: rotate(-10deg);
   }
   100% {
-    transform: translateY(0px);
+    transform: scale(1);
   }
 }
