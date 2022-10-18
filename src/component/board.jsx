@@ -14,10 +14,13 @@ import ChatBox from "./chat-box";
 import Button from "@mui/material/Button";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Fab from "@mui/material/Fab";
-
-
+import Tooltip from "@mui/material/Tooltip";
 
 function Board() {
+  const [text, setText] = useState("3FSD5DS9");
+  const copy = async () => {
+    await navigator.clipboard.writeText(text);
+  };
   const navigate = useNavigate();
   const [sec, setSec] = useState(10);
   useEffect(() => {
@@ -42,7 +45,11 @@ function Board() {
       <div className="header-play">
         <div></div>
         <div>
-          <h3 className="title">MÃ PHÒNG: 3FSD5DS9</h3>
+          <Tooltip title="Bấm để copy" placement="bottom">
+            <h3 className="title copy" onClick={copy}>
+              MÃ PHÒNG: {text}
+            </h3>
+          </Tooltip>
         </div>
         <div className="controller">
           <div>Kienngu</div>
@@ -82,14 +89,10 @@ function Board() {
           <div>{sec}</div>
         </div>
         <div className="draw-card-aria">
-         
-            <DrawCard />
-        
+          <DrawCard />
         </div>
         <div className="enemy-info">
-          
-            <h3>LienDink?</h3>
-          
+          <h3>LienDink?</h3>
         </div>
         <div>
           <ChooseColor />
