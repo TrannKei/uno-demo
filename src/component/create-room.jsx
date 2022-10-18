@@ -1,8 +1,12 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-
+import {useNavigate} from "react-router-dom"
 function CreateRoom() {
+  const navigate = useNavigate()
+  const goRoom = ()=>{
+    navigate("/play")
+  }
   return (
     <>
       <div className="with-50 center ">
@@ -16,6 +20,7 @@ function CreateRoom() {
           color="success"
           style={{ borderRadius: "20px" }}
           className="z-Index20"
+          onClick={goRoom}
         >
           Vào phòng
         </Button>
@@ -26,6 +31,7 @@ function CreateRoom() {
           color="success"
           style={{ borderRadius: "20px" }}
           className="z-Index20"
+          onClick={goRoom}
         >
           Tạo phòng
         </Button>

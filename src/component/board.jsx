@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import LogoutIcon from "@mui/icons-material/Logout";
-import Card from "../ass/cards-front/0B.png";
-import MainPlayer from "./main-player";
-import Fab from "@mui/material/Fab";
-import EnemyCard from "./enemy-card";
-import DrawCard from "./draw-card";
 import { useNavigate } from "react-router-dom";
 import { logined } from "../features/status/StatusSlice";
 import { useDispatch } from "react-redux";
+
+import Card from "../ass/cards-front/0B.png";
+import MainPlayer from "./main-player";
+import EnemyCard from "./enemy-card";
+import DrawCard from "./draw-card";
 import ChooseColor from "./choose-color";
 import Winner from "./winner";
 import ChatBox from "./chat-box";
+
+import Button from "@mui/material/Button";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Fab from "@mui/material/Fab";
+
+
+
 function Board() {
   const navigate = useNavigate();
   const [sec, setSec] = useState(10);
@@ -77,16 +82,20 @@ function Board() {
           <div>{sec}</div>
         </div>
         <div className="draw-card-aria">
-          <DrawCard />
+         
+            <DrawCard />
+        
         </div>
         <div className="enemy-info">
-          <h3>LienDink?</h3>
+          
+            <h3>LienDink?</h3>
+          
         </div>
         <div>
           <ChooseColor />
         </div>
         <Winner />
-        <ChatBox/>
+        <ChatBox />
       </div>
     </>
   );
