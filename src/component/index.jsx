@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import { login, signin, guest, logined } from "../features/status/StatusSlice";
 import Header from "./header";
 function Index() {
+  
   const { statusIndex } = useSelector((state) => state.statusIndex);
   const dispatch = useDispatch();
   const handleSignIn = () => {

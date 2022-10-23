@@ -1,18 +1,67 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { logined } from "../features/status/StatusSlice";
+
+import { useState, useEffect } from "react";
+import { login } from "../features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useNavigate, Link } from "react-router-dom";
+import { reset } from "../features/user/userSlice";
+import { createGuest } from "../features/user/userSlice";
+
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function Guest() {
-  
-  const [inputData, setInputData] = useState({
-    username: "",
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (store) => store.user
+  );
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
   });
-  const handleInput = (e) => {
-    setInputData((prev) => ({
+
+  const [userName, setUserName] = useState("");
+
+  const { email, password } = formData;
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
+  const handleLogin = () => {
+    dispatch(login(formData));
+    dispatch(logined());
+  };
+
+  const handleGuest = () => {
+    dispatch(createGuest({ userName }));
+  };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      dispatch(logined());
+    }
+
+    dispatch(reset());
+  }, [isLoading, isError, isSuccess, message, navigate, dispatch]);
+
   return (
     <>
       <div className="with-50 center ">
@@ -20,24 +69,26 @@ function Guest() {
           <h1 className="title">Nhập Tên </h1>
         </div>
         <div className="flex-col mb20 gap20px">
+          <ThemeProvider theme={darkTheme}>
           <TextField
             className="z-Index20"
             id="standard-basic"
             label="Tên Đăng Nhập"
             variant="standard"
             name="username"
-            onChange={handleInput}
+            // value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
+          </ThemeProvider>
           <Button
-           
             className="z-Index20"
             variant="contained"
+            onClick={handleGuest}
           >
             Khách
           </Button>
         </div>
       </div>
-      
     </>
   );
 }

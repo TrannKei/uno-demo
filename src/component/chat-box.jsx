@@ -35,7 +35,7 @@ function ChatBox() {
           </div>
         </div>
       ) : (
-        <div className="bot-right">
+        <div className="bot-left">
           <Fab onClick={handleCloseChat} color="primary" aria-label="add">
             <InsertCommentIcon />
           </Fab>
