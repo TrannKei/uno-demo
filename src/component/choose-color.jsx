@@ -18,21 +18,23 @@ const style = {
     height: '80vh',
     p: 1
 };
-export default function ChooseColor() {
+export default function ChooseColor({popUp, onClosePopUp, card}) {
+    console.log('Wild card drawn/ played' , card);
 
-    
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [open, setOpen] = React.useState(popUp);
+    // const handleOpen = () => setOpen(true);
+    React.useEffect(() => {
+        setOpen(popUp)
+    }, [popUp])
+    const handleClose = () => setOpen(true);
     return (
         <>
-            <Box sx={{ '& > :not(style)': { m: 1 } }} onClick={handleOpen}>
+            {/* <Box sx={{ '& > :not(style)': { m: 1 } }} onClick={handleOpen}>
                 <Fab color="primary" aria-label="add">
                     <FormatListBulletedIcon sx={{ fontSize: '2rem' }} />
                 </Fab>
             </Box>
-         
+          */}
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -43,12 +45,20 @@ export default function ChooseColor() {
                     <div style={{ width: '300px' }}>
                         <h3 className='title' style={{color: "white"}}>CHỌN MÀU TIẾP THEO:</h3>
                         <div className='color-wheel'>
-                            <div className='wheel-R square'></div>
+                            {/* <div className='wheel-R square'></div>
                             <div className='wheel-G square'></div>
                             <div className='wheel-Y square'></div>
-                            <div className='wheel-B square'></div>
+                            <div className='wheel-B square'></div> */}
+                            {
+                                ['R', 'G', 'Y', 'B'].map(color => (
+                                    <div className={`wheel-${color} square`}
+                                        onClick={() => onClosePopUp(color)}
+                                    ></div>
+                                ))
+                            }
                         </div>
                     </div>
+                    <img src={require(`../ass/cards-front/${card}.png`)} />
                 </Box>
             </Modal>
         </>

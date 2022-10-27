@@ -167,37 +167,39 @@ const Game = () => {
 
   return (
     <>
-     
-
       {gameOver || users.length === 1 ? (
-         <div className="bg-wait-room">
-         <div className="header-wait">
-           <div className="back-to-create">
-             <h3 onClick={handleLeave}>TRỞ LẠI</h3>
-           </div>
-           <Tooltip title="Bấm để chép mã phòng" placement="bottom">
-           <div className="roomId" onClick={copy}>
-             <h3>Mã phòng: {roomCode}</h3>
-           </div>
-           </Tooltip>
-           <div></div>
-         </div>
-         <div className="wait-member-aria">
-           {users.map((user) => (
-             <div className="member" key={user._id}>
-               <div className="member-avatar">
-                 <img  src={require('../ass/avatar.png')} />
-               </div>
-               <div className="member-name">{user.userName}</div>
-             </div>
-           ))}
-         </div>
-         <div className="bottom-wait">
-           <div className="ready-btn" onClick={handleStart}>
-             SẴN SÀNG
-           </div>
-         </div>
-       </div>
+        <div className="bg-wait-room">
+          <div className="header-wait">
+            <div className="back-to-create">
+              <h3 onClick={handleLeave}>TRỞ LẠI</h3>
+            </div>
+            <Tooltip title="Bấm để chép mã phòng" placement="bottom">
+              <div className="roomId" onClick={copy}>
+                <h3>Mã phòng: {roomCode}</h3>
+              </div>
+            </Tooltip>
+            <div></div>
+          </div>
+          <div className="wait-member-aria">
+            {users.map((user) => (
+              <div className="member" key={user._id}>
+                <div className="member-avatar">
+                  <img src={require("../ass/avatar.png")} />
+                </div>
+                <div className="member-name">
+                  <div>
+                    <h2>{user.userName}</h2>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="bottom-wait">
+            <div className="ready-btn" onClick={handleStart}>
+              <h2>SẴN SÀNG</h2>
+            </div>
+          </div>
+        </div>
       ) : (
         <Board socket={socket} />
       )}

@@ -17,16 +17,15 @@ const darkTheme = createTheme({
 
 function Login() {
   const [formData, setFormData] = useState({
-    userName: '',
     email: '',
     password: ''
   });
 
-  const { email,userName, password } = formData;
+  const { email, password } = formData;
   const dispatch = useDispatch();
-  const handleLogined = () => {
+  const handleLogIn = () => {
+    console.log(formData)
     dispatch(login(formData));
-    dispatch(logined());
   };
   const handleInput = (e) => {
     setFormData((prev) => ({
@@ -48,8 +47,8 @@ function Login() {
             id="standard-basic"
             label="Tên Đăng Nhập"
             variant="standard"
-            name="userName"
-            value={userName}
+            name="email"
+            value={email}
           
             onChange={handleInput}
           />
@@ -75,7 +74,7 @@ function Login() {
          </ThemeProvider> */}
         </div>
         <Button
-          onClick={handleLogined}
+          onClick={handleLogIn}
           className="z-Index20"
           variant="contained"
         >

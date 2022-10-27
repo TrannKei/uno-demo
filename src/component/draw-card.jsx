@@ -1,11 +1,15 @@
-import React from "react";
+import {useState} from "react";
 import Card from "../ass/card-back.png";
 import Tooltip from "@mui/material/Tooltip";
-function DrawCard() {
+import { useSelector } from "react-redux";
+import ChooseColor from "./choose-color";
+function DrawCard({socket, onCardDrawnHandler}) {
+  const {drawCardPile} = useSelector(state => state.game);
+
   return (
     <>
       <Tooltip title="Bốc bài" placement="bottom-end">
-        <div className="draw-box">
+        <div className="draw-box" onClick={() => {onCardDrawnHandler(drawCardPile[0])} }>
           <img className="draw-card" src={Card} />
           <img className="draw-card  draw-card-2" src={Card} />
           <img className="draw-card  draw-card-3" src={Card} />

@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../ass/card-back.png";
 import PersonIcon from "@mui/icons-material/Person";
 import { fontSize } from "@mui/system";
+import { useSelector } from "react-redux";
 
 const iconStyle = {
   transform: "scale(3)",
@@ -10,19 +11,28 @@ const iconStyle = {
 }
 
 function EnemyCard() {
+  const {users, currentUser} = useSelector(state => state.room);
+  const gameState = useSelector(state => state.game);
+  const {deckOfPlayers} = gameState;
+  const opponent = users.find(user => user._id !== currentUser.id);
+  const opponentDeck = gameState[deckOfPlayers[opponent._id]];
+  // console.log(opponentDeck)
+  
   return (
     <>
       <div>
         <div className="enemy-info ">
           <PersonIcon style={iconStyle} />
-          <h3 >LienDink?</h3>
+          <h3 >{opponent.userName}</h3>
         </div>
         <div className="main-player-card-item">
-          <img style={{ width: "60px" }} src={Card} />
-          <img style={{ width: "60px" }} src={Card} />
-          <img style={{ width: "60px" }} src={Card} />
-          <img style={{ width: "60px" }} src={Card} />
-          <img style={{ width: "60px" }} src={Card} />
+         {
+          Array(opponentDeck.length)
+          .fill('card')
+          .map(card => (
+            <img style={{ width: "60px" }} src={Card} />
+          ))
+         }
         </div>
       </div>
     </>

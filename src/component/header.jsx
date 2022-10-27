@@ -27,8 +27,8 @@ function Header() {
         <div></div>
 
         <div></div>
-        <div className="controller">
-          {/* <div>{user.userName}</div> */}
+        <div className="controller top-right">
+          <div>{user.userName}</div>
           <Button
             variant="contained"
             color="error"

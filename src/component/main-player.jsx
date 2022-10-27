@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ChooseColor from "./choose-color";
 
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -50,16 +51,9 @@ function MainPlayer({ socket }) {
   };
 
   const isChangePlayer = (cardType) => {
-    const changeTurnCarType = ["number", "wild", "reverse", "draw4wild"];
+    const changeTurnCarType = ["number", "wild", "draw2", "draw4wild"];
     return changeTurnCarType.some((type) => type === cardType);
   };
-
-  // const closePopUp = (colorChoose) => {
-  //   setColorChosen(colorChoose);
-  //   setPopUp(false);
-  //   onCardPlayedHandler(specialCard);
-  // };
-
   // Handle Play Card
   const onCardPlayedHandler = (played_card) => {
     if (turn !== currentUser.id) {
@@ -117,20 +111,17 @@ function MainPlayer({ socket }) {
     };
     numberOfPlayedCard = getNumber(played_card);
 
-    console.log("plaey Card", numberOfPlayedCard, colorOfPlayedCard);
+    console.log("played Card", numberOfPlayedCard, colorOfPlayedCard);
     console.log("current Card", currentNumber, currentColor);
     // If match color or number
     if (
       colorOfPlayedCard === currentColor ||
       numberOfPlayedCard === currentNumber ||
-      // || currentNumber === 404
-      // || currentNumber === 252
-      // || currentNumber === 301
-      currentNumber === 300 ||
-      currentNumber === 600
+      numberOfPlayedCard === 300 ||
+      numberOfPlayedCard === 600
     ) {
       // Update turn
-      const nextPlayer = isChangePlayer ? opponentId : turn;
+      const nextPlayer = isChangePlayer(cardType) ? opponentId : turn;
 
       // New Current Player Deck
       const newPlayerDeck = (() => {
@@ -160,12 +151,15 @@ function MainPlayer({ socket }) {
       // Update Other player if neccessary
       const updateOpponent = () => {
         let newDeck = [...otherDeck];
+        console.log("Old opponent", newDeck);
+
         if (cardType === "draw2") {
           newDeck.push(...copiedDrawCardPile.splice(-2));
         }
         if (cardType === "draw4wild") {
           newDeck.push(...copiedDrawCardPile.splice(-4));
         }
+        console.log("Add to opponent", newDeck);
         return newDeck;
       };
 
@@ -173,6 +167,7 @@ function MainPlayer({ socket }) {
         const otherDeckName =
           cardFromDeck === "player1Deck" ? "player2Deck" : "player1Deck";
         newObjectToEmit[otherDeckName] = updateOpponent();
+        newObjectToEmit.drawCardPile = [...copiedDrawCardPile];
       }
 
       console.log("New Object ", newObjectToEmit);
@@ -181,10 +176,16 @@ function MainPlayer({ socket }) {
     } else {
       // if not match color || number
       toast.error("Invalid move");
+      console.error(played_card);
       return;
     }
   };
 
+  const closePopUp = (colorChoose) => {
+    setColorChosen(colorChoose);
+    setPopUp(false);
+    onCardPlayedHandler(specialCard);
+  };
   return (
     <>
       <div className="main-player-card-item z-Index20">
@@ -195,6 +196,9 @@ function MainPlayer({ socket }) {
               {gameStat[deckOfPlayers[user._id]].map((card, index) => {
                 return (
                   <img
+                    onClick={() => {
+                      onCardPlayedHandler(card);
+                    }}
                     className="img-card-throwed-main"
                     src={require(`../ass/cards-front/${card}.png`)}
                   />
@@ -202,6 +206,15 @@ function MainPlayer({ socket }) {
               })}
             </div>
           ))}
+      </div>
+      <div className="learn-more">uno</div>
+
+      <div>
+        <ChooseColor
+          popUp={popUp}
+          onClosePopUp={closePopUp}
+          card={specialCard}
+        />
       </div>
     </>
   );

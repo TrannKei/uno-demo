@@ -8,43 +8,37 @@ import Button from "@mui/material/Button";
 import { login, signin, guest, logined } from "../features/status/StatusSlice";
 import Header from "./header";
 function Index() {
-  
-  const { statusIndex } = useSelector((state) => state.statusIndex);
-  const dispatch = useDispatch();
-  const handleSignIn = () => {
-    dispatch(signin());
-  };
+  const { user } = useSelector((state) => state.user);
+  const [statusIndex, setStatusIndex] = useState("login");
+  // logi
+  // register
+  // guest
 
-  const handleGuest = () => {
-    dispatch(guest());
-  };
-  const handleLogin = () => {
-    dispatch(login());
-  };
   console.log(statusIndex);
   return (
     <>
       <div className="bg">
-       {statusIndex === "logined" &&  <Header/>} 
+        {user && <Header />}
         <div className="login-box ">
-          {statusIndex !== "logined" && (
+          {/* If dont have user  */}
+          {!user && (
             <div className="nav-bar ">
               <Button
-              onClick={handleLogin}
+                onClick={() => setStatusIndex("login")}
                 variant={statusIndex === "login" ? "contained" : "outlined"}
                 className="z-Index20 with-33"
               >
                 đăng nhập
               </Button>
               <Button
-              onClick={handleSignIn}
+                onClick={() => setStatusIndex("signin")}
                 variant={statusIndex === "signin" ? "contained" : "outlined"}
                 className="z-Index20 with-33"
               >
                 đăng kí
               </Button>
               <Button
-              onClick={handleGuest}
+                onClick={() => setStatusIndex("guest")}
                 variant={statusIndex === "guest" ? "contained" : "outlined"}
                 className="z-Index20 with-33"
               >
@@ -52,10 +46,15 @@ function Index() {
               </Button>
             </div>
           )}
-          {statusIndex === "login" && <Login />}
-          {statusIndex === "signin" && <SignIn />}
-          {statusIndex === "guest" && <Guest />}
-          {statusIndex === "logined" && <CreateRoom />}
+          {user ? (
+            <CreateRoom />
+          ) : (
+            <>
+              {statusIndex === "login" && <Login />}
+              {statusIndex === "signin" && <SignIn />}
+              {statusIndex === "guest" && <Guest />}
+            </>
+          )}
         </div>
       </div>
     </>
